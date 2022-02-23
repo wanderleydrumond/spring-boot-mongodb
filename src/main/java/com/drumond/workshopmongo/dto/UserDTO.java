@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 @NoArgsConstructor
 @Getter
@@ -16,9 +17,9 @@ public class UserDTO implements Serializable {
     private String name;
     private String email;
 
-    public UserDTO(@NotNull User user) {
-        id = user.getId();
-        name = user.getName();
-        email = user.getEmail();
+    public UserDTO(@NotNull Optional<User> user) {
+        id = user.get().getId();
+        name = user.get().getName();
+        email = user.get().getEmail();
     }
 }
