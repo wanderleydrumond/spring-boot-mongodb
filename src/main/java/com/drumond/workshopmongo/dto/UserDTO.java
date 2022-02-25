@@ -18,8 +18,8 @@ public class UserDTO implements Serializable {
     private String email;
 
     public UserDTO(@NotNull Optional<User> user) {
-        id = user.get().getId();
-        name = user.get().getName();
-        email = user.get().getEmail();
+        user.ifPresent(value -> id = value.getId());
+        user.ifPresent(value -> name = value.getName());
+        user.ifPresent(value -> email = value.getEmail());
     }
 }
