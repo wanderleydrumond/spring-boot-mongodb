@@ -1,5 +1,8 @@
 package com.drumond.workshopmongo.services.exception;
 
+/**
+ * Exception for invalid id.
+ */
 public class ObjectNotFoundException extends RuntimeException {
     /**
      * Constructs a new runtime exception with {@code null} as its

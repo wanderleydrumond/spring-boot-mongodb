@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
+/**
+ * Object which will treat the custom error
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

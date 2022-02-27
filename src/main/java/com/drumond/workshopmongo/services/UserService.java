@@ -13,6 +13,9 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+    /**
+     * Dependency Injection to access CRUD methods
+     */
     @Autowired
     private UserRepository userRepository;
 
@@ -42,6 +45,16 @@ public class UserService {
      */
     public User insertUser(User userObject) {
         return userRepository.insert(userObject);
+    }
+
+    /**
+     * Delete a given user.
+     *
+     * @param id The id from the user to be deleted
+     */
+    public void deleteUser(String id) {
+        findUserById(id);
+        userRepository.deleteById(id);
     }
 
     /**

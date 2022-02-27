@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +18,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
+    /**
+     * Dependency Injection to access CRUD methods
+     */
     @Autowired
     private UserService userService;
 
@@ -58,5 +60,17 @@ public class UserResource {
         userObject = userService.insertUser(userObject);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userObject.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    /**
+     * Deletes a given user from the database.
+     *
+     * @param id The id from the user to be deleted
+     * @return The delete response
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteUserById(@PathVariable String id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 }

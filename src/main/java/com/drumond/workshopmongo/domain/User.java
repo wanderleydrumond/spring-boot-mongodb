@@ -15,8 +15,17 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public @Data class User implements Serializable {
+    /**
+     * User id in the mongodb
+     */
     @Id
     private String id;
+    /**
+     * User name in the mongodb
+     */
     private String name;
+    /**
+     * User email in the mongodb
+     */
     private String email;
 }

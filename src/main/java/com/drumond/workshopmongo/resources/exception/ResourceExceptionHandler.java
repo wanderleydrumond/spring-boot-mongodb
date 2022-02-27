@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Custom error handling when and invalid ID is inserted.
+ */
 @ControllerAdvice
 public class ResourceExceptionHandler {
     @ExceptionHandler(ObjectNotFoundException.class)

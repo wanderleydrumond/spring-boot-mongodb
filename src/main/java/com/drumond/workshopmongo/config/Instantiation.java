@@ -10,11 +10,15 @@ import java.util.Arrays;
 
 @Configuration
 public class Instantiation implements CommandLineRunner {
+    /**
+     * Dependency Injection to access CRUD methods
+     */
     @Autowired
     private UserRepository userRepository;
 
     /**
      * Callback used to run the bean.
+     * Override method to instantiate 3 userts everytime that the application is started.
      *
      * @param args incoming main method arguments
      * @throws Exception on error
