@@ -66,11 +66,26 @@ public class UserResource {
      * Deletes a given user from the database.
      *
      * @param id The id from the user to be deleted
-     * @return The delete response
+     * @return The http response 204 code
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteUserById(@PathVariable String id) {
         userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Update all fields from a given user.
+     *
+     * @param userDTO The User object DTO
+     * @param id The user id
+     * @return The http response 204 code
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> updateUser(@RequestBody UserDTO userDTO, @PathVariable String id) {
+        User userObject = userService.fromDTO(userDTO);
+        userObject.setId(id);
+        userObject = userService.updateUser(userObject);
         return ResponseEntity.noContent().build();
     }
 }
