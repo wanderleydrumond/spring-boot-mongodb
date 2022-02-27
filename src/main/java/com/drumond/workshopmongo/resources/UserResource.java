@@ -11,7 +11,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -31,7 +30,7 @@ public class UserResource {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<UserDTO>> findAll() {
         List<User> users = userService.findAllUsers();
-        List<UserDTO> usersDTO = users.stream().map(element -> new UserDTO(Optional.ofNullable(element))).collect(Collectors.toList());
+        List<UserDTO> usersDTO = users.stream().map(UserDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(usersDTO);
     }
 
@@ -43,7 +42,7 @@ public class UserResource {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<UserDTO> findUserById(@PathVariable String id) {
-        Optional<User> userObject = userService.findUserById(id);
+        User userObject = userService.findUserById(id);
         return ResponseEntity.ok().body(new UserDTO(userObject));
     }
 
@@ -53,14 +52,11 @@ public class UserResource {
      * @param userDTO DTO of user object to be created
      * @return The 201 code along with new requisition to create a new user
      */
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> insertUser(@RequestBody UserDTO userDTO) throws URISyntaxException {
-        Optional<User> userObject = Optional.ofNullable(userService.fromDTO(userDTO));
+    @PostMapping
+    public ResponseEntity<Void> insertUser(@RequestBody UserDTO userDTO) {
+        User userObject = userService.fromDTO(userDTO);
         userObject = userService.insertUser(userObject);
-        URI uri = new URI("localhost:8080");
-        if (userObject.isPresent()) {
-            uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userObject.get().getId()).toUri();
-        }
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userObject.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 }

@@ -29,22 +29,19 @@ public class UserService {
      * @param id The given user id
      * @return The user object to be found
      */
-    public Optional<User> findUserById(String id) {
+    public User findUserById(String id) {
         Optional<User> user = userRepository.findById(id);
-        if (user.isEmpty()) {
-            throw new ObjectNotFoundException("Objeto não encontrado");
-        }
-        return user;
+        return user.orElseThrow(()-> new ObjectNotFoundException("Usuário não encontrado"));
     }
 
     /**
      * Insert new user in the database
      *
-     * @param userOptional The given user object
+     * @param userObject The given user object
      * @return The object which contains the user to be inserted
      */
-    public Optional<User> insertUser(Optional<User> userOptional) {
-        return userRepository.insert(userOptional);
+    public User insertUser(User userObject) {
+        return userRepository.insert(userObject);
     }
 
     /**

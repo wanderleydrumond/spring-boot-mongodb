@@ -8,6 +8,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 
+/**
+ * User Entity
+ */
 @Document(collection = "user") //Opcional. Serve para mudar o nome do documento (tabela).
 @NoArgsConstructor
 @AllArgsConstructor
