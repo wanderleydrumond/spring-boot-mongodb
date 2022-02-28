@@ -17,10 +17,25 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public @Data class Post implements Serializable {
+    /**
+     * Post id
+     */
     @Id
     private String id;
+    /**
+     * Post date
+     */
     private Date date;
+    /**
+     * Post title
+     */
     private String title;
+    /**
+     * Post content
+     */
     private String body;
+    /**
+     * Object which contains post author
+     */
     private AuthorDTO author;
 }

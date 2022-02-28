@@ -13,6 +13,9 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.TimeZone;
 
+/**
+ * Class that provides the first system data when it starts.
+ */
 @Configuration
 public class Instantiation implements CommandLineRunner {
     /**
@@ -52,5 +55,8 @@ public class Instantiation implements CommandLineRunner {
         Post post2 = new Post(null, simpleDateFormat.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(mary));
 
         postRepository.saveAll(Arrays.asList(post1, post2));
+
+        mary.getPosts().addAll(Arrays.asList(post1, post2));
+        userRepository.save(mary);
     }
 }
