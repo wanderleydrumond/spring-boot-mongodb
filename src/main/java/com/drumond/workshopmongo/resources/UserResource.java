@@ -1,5 +1,6 @@
 package com.drumond.workshopmongo.resources;
 
+import com.drumond.workshopmongo.domain.Post;
 import com.drumond.workshopmongo.domain.User;
 import com.drumond.workshopmongo.dto.UserDTO;
 import com.drumond.workshopmongo.services.UserService;
@@ -87,5 +88,11 @@ public class UserResource {
         userObject.setId(id);
         userObject = userService.updateUser(userObject);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findUserPosts(@PathVariable String id) {
+        User userObject = userService.findUserById(id);
+        return ResponseEntity.ok().body(userObject.getPosts());
     }
 }
