@@ -57,12 +57,24 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    /**
+     * Finds a given user and update all their
+     *
+     * @param userObject The user object to be updated
+     * @return The updated user
+     */
     public User updateUser(@NotNull User userObject) {
         User newUser = findUserById(userObject.getId());
         updateData(newUser, userObject);
         return userRepository.save(newUser);
     }
 
+    /**
+     * Updates all the data from a given user
+     *
+     * @param newUser The user object that will receive the changes
+     * @param userObject The user object that will provide the data to be updated
+     */
     private void updateData(@NotNull User newUser, @NotNull User userObject) {
         newUser.setName(userObject.getName());
         newUser.setEmail(userObject.getEmail());
