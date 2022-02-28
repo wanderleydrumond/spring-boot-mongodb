@@ -28,7 +28,14 @@ public class PostService {
         return post.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado"));
     }
 
+    /**
+     * Calls the method which finds a post by some given text.
+     *
+     * @param text The text that wil be searched
+     * @return The posts list which contains the given text
+     */
     public List<Post> findPostByTitle(String text) {
-        return postRepository.findByTitleContainingIgnoreCase(text);
+//        return postRepository.findByTitleContainingIgnoreCase(text);
+        return postRepository.searchTitle(text);
     }
 }

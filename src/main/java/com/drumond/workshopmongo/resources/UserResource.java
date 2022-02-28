@@ -90,6 +90,12 @@ public class UserResource {
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * Finds a list of posts from a given user id.
+     *
+     * @param id The user id
+     * @return The posts list from the user which the id belongs along with the HTTP 200 response
+     */
     @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
     public ResponseEntity<List<Post>> findUserPosts(@PathVariable String id) {
         User userObject = userService.findUserById(id);
