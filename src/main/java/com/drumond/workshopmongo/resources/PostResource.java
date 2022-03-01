@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,6 +44,25 @@ public class PostResource {
     public ResponseEntity<List<Post>> findPostByTitle(@RequestParam(value = "text", defaultValue = "") String text) {
         text = URL.decodeParameter(text);
         List<Post> posts = postService.findPostByTitle(text);
+        return ResponseEntity.ok().body(posts);
+    }
+
+    /**
+     * Gets posts list which are between a timestamp and contains a given text in title, body or comment.
+     *
+     * @param text        The text to be searched
+     * @param minimumDate The beginning search date
+     * @param maximumDate The ending search date
+     * @return The posts list along with the HTTP code 200
+     */
+    @RequestMapping(value = "/full-search", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> fullSearch(@RequestParam(value = "text", defaultValue = "") String text,
+                                                 @RequestParam(value = "minimumDate", defaultValue = "") String minimumDate,
+                                                 @RequestParam(value = "maximumDate", defaultValue = "") String maximumDate) {
+        text = URL.decodeParameter(text);
+        Date minimum = URL.convertDate(minimumDate, new Date(0L));
+        Date maximum = URL.convertDate(maximumDate, new Date());
+        List<Post> posts = postService.fullSearch(text, minimum, maximum);
         return ResponseEntity.ok().body(posts);
     }
 }

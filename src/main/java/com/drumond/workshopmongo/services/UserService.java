@@ -87,6 +87,6 @@ public class UserService {
      * @return A new DTO from user
      */
     public User fromDTO(@NotNull UserDTO userDTO) {
-        return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
+        return new User(userDTO.getName(), userDTO.getEmail());
     }
 }

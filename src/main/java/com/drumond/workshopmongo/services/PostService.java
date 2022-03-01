@@ -6,6 +6,7 @@ import com.drumond.workshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,5 +38,18 @@ public class PostService {
     public List<Post> findPostByTitle(String text) {
 //        return postRepository.findByTitleContainingIgnoreCase(text);
         return postRepository.searchTitle(text);
+    }
+
+    /**
+     * Change the final date to the entire day and calls the method which perform the search.
+     *
+     * @param text The text which will be searched in title, body or comment
+     * @param minimumDate The beginning search date
+     * @param maximumDate The ending search date
+     * @return The search result
+     */
+    public List<Post> fullSearch(String text, Date minimumDate,  Date maximumDate) {
+        maximumDate = new Date(maximumDate.getTime() + 24 * 60 * 60 * 1000);
+        return postRepository.fullSearch(text, minimumDate, maximumDate);
     }
 }

@@ -2,10 +2,7 @@ package com.drumond.workshopmongo.domain;
 
 import com.drumond.workshopmongo.dto.AuthorDTO;
 import com.drumond.workshopmongo.dto.CommentDTO;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,7 +16,7 @@ import java.util.List;
  */
 @Document
 @NoArgsConstructor
-//@RequiredArgsConstructor(onConstructor_= {@Id})
+@RequiredArgsConstructor
 @EqualsAndHashCode(callSuper = false, of = {"id", "date", "title", "body", "author"})
 @Getter
 @Setter
@@ -28,39 +25,30 @@ public class Post implements Serializable {
      * Post id
      */
     @Id
-//    @NonNull //with problems
     private String id;
     /**
      * Post date
      */
-//    @NonNull
+    @NonNull
     private Date date;
     /**
      * Post title
      */
-//    @NonNull
+    @NonNull
     private String title;
     /**
      * Post content
      */
-//    @NonNull
+    @NonNull
     private String body;
     /**
      * Object which contains post author
      */
-//    @NonNull
+    @NonNull
     private AuthorDTO author;
 
     /**
      * Comments list from this post
      */
     private List<CommentDTO> comments = new ArrayList<>();
-
-    public Post(String id, Date date, String title, String body, AuthorDTO author) {
-        this.id = id;
-        this.date = date;
-        this.title = title;
-        this.body = body;
-        this.author = author;
-    }
 }

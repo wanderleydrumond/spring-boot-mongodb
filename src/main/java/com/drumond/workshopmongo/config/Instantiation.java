@@ -34,7 +34,7 @@ public class Instantiation implements CommandLineRunner {
 
     /**
      * Callback used to run the bean.
-     * Override method to instantiate 3 userts everytime that the application is started.
+     * Override method to instantiate 3 users everytime that the application is started.
      *
      * @param args incoming main method arguments
      * @throws Exception on error
@@ -47,14 +47,14 @@ public class Instantiation implements CommandLineRunner {
         userRepository.deleteAll();
         postRepository.deleteAll();
 
-        User mary = new User(null, "Mary Brown", "mary@email.com");
-        User alex = new User(null, "Alex Green", "alex@email.com");
-        User bob = new User(null, "Bob Grey", "bob@email.com");
+        User mary = new User("Mary Brown", "mary@email.com");
+        User alex = new User("Alex Green", "alex@email.com");
+        User bob = new User("Bob Grey", "bob@email.com");
 
         userRepository.saveAll(Arrays.asList(mary, alex, bob));
 
-        Post post1 = new Post(null, simpleDateFormat.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(mary));
-        Post post2 = new Post(null, simpleDateFormat.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(mary));
+        Post post1 = new Post(simpleDateFormat.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(mary));
+        Post post2 = new Post(simpleDateFormat.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(mary));
 
         CommentDTO comment1 = new CommentDTO("Boa viagem mano!", simpleDateFormat.parse("21/03/2018"), new AuthorDTO(alex));
         CommentDTO comment2 = new CommentDTO("Aproveite", simpleDateFormat.parse("22/03/2018"), new AuthorDTO(bob));
