@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Implements the CRUD methods for users
+ */
 @Service
 public class UserService {
     /**

@@ -10,6 +10,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class that contains the methods which redirects the CRUD operations
+ */
 @Service
 public class PostService {
     /**

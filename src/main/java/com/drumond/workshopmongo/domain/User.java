@@ -22,7 +22,7 @@ public @Data class User implements Serializable {
     @Id
     private String id;
     /**
-     * User name in the mongodb
+     * Username in the mongodb
      */
     @NonNull
     private String name;
@@ -36,4 +36,17 @@ public @Data class User implements Serializable {
      */
     @DBRef(lazy = true) // Only instantiated if made it directly.
     private List<Post> posts = new ArrayList<>();
+
+    /**
+     * Constructor method made only for unit tests (UserRepositoryTest).
+     *
+     * @param id The user id
+     * @param name The username
+     * @param email The user e-mail
+     */
+    public User(String id, @NonNull String name, @NonNull String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
 }

@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Implements the CRUD methods
+ * Implements the CRUD methods for posts
  */
 @RestController
 @RequestMapping(value = "/posts")
