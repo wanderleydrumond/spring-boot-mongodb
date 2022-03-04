@@ -84,7 +84,7 @@ public class UserService {
     }
 
     /**
-     * Creates a user.
+     * DTO factory.
      *
      * @param userDTO The given user DTO
      * @return A new DTO from user

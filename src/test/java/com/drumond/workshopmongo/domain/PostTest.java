@@ -19,14 +19,6 @@ class PostTest {
     Post post1 = new Post("lisduhtgn356245", initialDate,"Post title","Post body", initialAuthorDTO);
     CommentDTO initialCommentDTO = new CommentDTO("Comment text",new Date(),new AuthorDTO(initialUser));
 
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
-
     @Test
     void getId() {
 //        Then

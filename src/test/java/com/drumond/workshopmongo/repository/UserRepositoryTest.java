@@ -21,14 +21,6 @@ class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
-
     /**
      * Inserts a new user in the database then count how many users are.
      */
