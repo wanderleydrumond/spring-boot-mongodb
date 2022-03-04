@@ -16,6 +16,7 @@ import java.util.List;
  */
 @Document
 @NoArgsConstructor
+//@AllArgsConstructor // used only for unit tests
 @RequiredArgsConstructor
 @EqualsAndHashCode(callSuper = false, of = {"id", "date", "title", "body", "author"})
 @Getter
@@ -51,4 +52,21 @@ public class Post implements Serializable {
      * Comments list from this post
      */
     private List<CommentDTO> comments = new ArrayList<>();
+
+    /**
+     * Custom constructor method used only for unit tests
+     *
+     * @param id Post id
+     * @param date Post date
+     * @param title Post title
+     * @param body post content
+     * @param author DTO from the user object
+     */
+    public Post(String id, @NonNull Date date, @NonNull String title, @NonNull String body, @NonNull AuthorDTO author) {
+        this.id = id;
+        this.date = date;
+        this.title = title;
+        this.body = body;
+        this.author = author;
+    }
 }

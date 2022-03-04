@@ -19,6 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
+    User user = new User("liuryzdgn238457", "Usuário", "usuario@email.com");
+    Post post = new Post(new Date(), "Post title", "Post body", new AuthorDTO(user));
+
     @BeforeEach
     void setUp() {
     }
@@ -29,37 +32,24 @@ class UserTest {
 
     @Test
     void getId() {
-//        Given
-        User user = new User("liuryzdgn238457", "Usuário", "usuario@email.com");
-
 //        Then
         assertEquals("liuryzdgn238457", user.getId());
     }
 
     @Test
     void getName() {
-//        Given
-        User user = new User("liuryzdgn238457", "Usuário", "usuario@email.com");
-
 //        Then
         assertEquals("Usuário", user.getName());
     }
 
     @Test
     void getEmail() {
-//        Given
-        User user = new User("liuryzdgn238457", "Usuário", "usuario@email.com");
-
 //        Then
         assertEquals("usuario@email.com", user.getEmail());
     }
 
     @Test
     void getPosts() {
-//        Given
-        User user = new User("liuryzdgn238457", "Usuário", "usuario@email.com");
-        Post post = new Post(new Date(), "Post title", "Post body", new AuthorDTO(user));
-
 //        When
         user.setPosts(List.of(post));
 
@@ -106,7 +96,6 @@ class UserTest {
     @Test
     void setPosts() {
 //        Given
-        User user = new User("liuryzdgn238457", "Usuário", "usuario@email.com");
         Date date = new Date();
         Post post = new Post(date, "Post title", "Post body", new AuthorDTO(user));
 
@@ -124,9 +113,6 @@ class UserTest {
 
     @Test
     void testToString() {
-//        Given
-        User user = new User("liuryzdgn238457", "Usuário", "usuario@email.com");
-
 //        Then
         assertThat(user.toString(), is("User(id=liuryzdgn238457, name=Usuário, email=usuario@email.com, posts=[])"));
     }
